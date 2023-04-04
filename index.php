@@ -114,7 +114,7 @@ if ($text == "📊 اطلاعات سرویس") {
       $timestamp = $data_useer['expire'];
       $expirationDate = jdate('Y/m/d', $timestamp);
       $current_date = jdate('Y/m/d');
-      if ($expirationDate == $current_date) {
+      if (date('Y/m/d', $timestamp) == "1970/01/01") {
         $expirationDate = "نامحدود";
       }
       #-----------------------------#
