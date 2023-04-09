@@ -1,9 +1,17 @@
-<?php 
-# id telegram @gholipour3
-$url_panel="https://site.com:8080";/*آدرس پنل */
-$username_panel = "admin";#نام کاربری پنل مرزبان را وارد کنید
-$password_panel = "admin"; # رمز عبور پنل مرزبان را وارد نمایید
-$token = "TOKEN";# توکن ربات
-$time = "1";# زمان اکانت تست بر اساس ساعت
-$val = "100"; #حجم اکانت تست بر اساس مگابایت
-$adminidnumbeer = "1111111";     #آیدی عددی ادمین
+<?php
+//-----------------------------database-------------------------------
+$dbname = "userbott"; //  Name db
+$username = "userbot"; // Username db
+$password = 'password'; // Pass username db
+$connect = mysqli_connect("localhost", $username, $password, $dbname);
+//-----------------------------ifno-------------------------------
+$token = "TOKEN";
+$adminnumber ="1111111111";
+//-----------------------------ifno panel-------------------------------
+$url_panel = "https://site.com:8080";
+$username_panel = "admin";
+$password_panel ="admin";
+$time = "1";
+$val = "100";
+$limit_usertest ='10';
+
