@@ -10,7 +10,7 @@ function token_panel($url_panel,$username_panel,$password_panel){
     $options = array(
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_POST => true,
-        CURLOPT_TIMEOUT_MS => 300,
+        CURLOPT_TIMEOUT_MS => 1000,
         CURLOPT_POSTFIELDS => http_build_query($data_token),
         CURLOPT_HTTPHEADER => array(
             'Content-Type: application/x-www-form-urlencoded',
