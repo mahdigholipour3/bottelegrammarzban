@@ -979,14 +979,9 @@ if ($text == $datatextbot['text_Add_Balance']) {
     $stmt->bind_param("ss", $step, $from_id);
     $stmt->execute();
 } elseif ($user['step'] == "getprice") {
-    if (!ctype_digit($text)) {
-        sendmessage($from_id, $textbotlang['users']['Balance']['errorprice'], null, 'HTML');
-        return;
-    }
-    if (intval($text) > 10000000) {
-        sendmessage($from_id, $textbotlang['users']['Balance']['errorpricelimit'],  null, 'HTML');
-        return;
-    }
+    if(!is_numeric($text)) return sendmessage($from_id, $textbotlang['users']['Balance']['errorprice'], null, 'HTML');
+    if ($text > 10000000 and $text < 50000) return sendmessage($from_id, $textbotlang['users']['Balance']['errorpricelimit'],  null, 'HTML');
+      
     $stmt = $connect->prepare("UPDATE user SET Processing_value = ? WHERE id = ?");
     $stmt->bind_param("ss", $text, $from_id);
     $stmt->execute();
