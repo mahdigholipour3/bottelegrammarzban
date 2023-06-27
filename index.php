@@ -24,28 +24,9 @@ foreach ($telegram_ip_ranges as $telegram_ip_range) if (!$ok) {
 }
 if (!$ok) die("دسترسی غیرمجاز");
 #-----------function------------#
-function tronweswap()
+function tronWeswap()
 {
-
-    $curl = curl_init();
-
-    curl_setopt_array($curl, [
-        CURLOPT_URL => "https://api.weswap.digital/api/rate",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => "",
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => "GET",
-        CURLOPT_HTTPHEADER => [
-            "Accept: application/json"
-        ],
-    ]);
-
-    $response = curl_exec($curl);
-    curl_close($curl);
-    $response = json_decode($response, true);
-    return $response;
+    return json_decode(file_get_contents('https://api.weswap.digital/api/rate'), true);
 }
 function nowPayments($payment, $price_amount, $order_id, $order_description)
 {
@@ -74,8 +55,7 @@ function nowPayments($payment, $price_amount, $order_id, $order_description)
 
     $response = curl_exec($curl);
     curl_close($curl);
-    $res = json_decode($response);
-    return ($res);
+    return json_decode($response);
 }
 function StatusPayment($paymentid)
 {
@@ -999,7 +979,7 @@ if ($text == $datatextbot['text_Add_Balance']) {
         $stmt->execute();
     }
     if ($text == "💵 پرداخت nowpayments") {
-        $price_rate = tronweswap();
+        $price_rate = tronWeswap();
         $USD = $price_rate['result']['USD'];
         $usdprice = round($Processing_value / $USD, 2);
         if ($usdprice < 2) {
@@ -1039,7 +1019,7 @@ if ($text == $datatextbot['text_Add_Balance']) {
         sendmessage($from_id, $textnowpayments, $paymentkeyboard, 'HTML');
     }
     if ($text == "💎درگاه پرداخت ارزی (ریالی )") {
-        $price_rate = tronweswap();
+        $price_rate = tronWeswap();
         $trx = $price_rate['result']['TRX'];
         $usd = $price_rate['result']['USD'];
         $trxprice = round($Processing_value / $trx, 2);
